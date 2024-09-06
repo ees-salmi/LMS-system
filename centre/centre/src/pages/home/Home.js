@@ -11,53 +11,39 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     header: {
-      position: 'relative', // Set the header to relative to position the text absolutely within it
+      position: 'relative',
       backgroundImage: `url(${"../../images/header-bg.png"})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      height: '300px', // Adjust height as needed
+      height: '300px', 
     },
     textContainer: {
       position: 'absolute',
-      top: '50%', // Vertical center
-      right: '50px', // Adjust as needed for the left alignment
-      transform: 'translateY(-50%)', // Center the text vertically
+      top: '50%',
+      right: '50px', 
+      transform: 'translateY(-50%)', 
       textAlign: 'right',
     },
     textContainer1: {
       position: 'absolute',
-      top: '60%', // Vertical center
-      right: '50px', // Adjust as needed for the left alignment
-      transform: 'translateY(-40%)', // Center the text vertically
+      top: '60%', 
+      right: '50px', 
+      transform: 'translateY(-40%)', 
       textAlign: 'right',
     },
+    textContainer2: {
+      position: 'absolute',
+      top: '50%', 
+      left: '20px', 
+      transform: 'translateY(-50%)', 
+      alignItems: 'left',
+    },
     toolbar: {
-      background: 'rgba(0, 0, 0, 0.1)', // Optional: semi-transparent overlay for better text readability
+      background: 'rgba(0, 0, 0, 0.1)', 
     },
   }));
 
-const card = (classes, title, description) => {
-    return (
-        <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {title}
-                  </Typography>
-                  <Typography>
-                    {description}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    View
-                  </Button>
-                  <Button size="small" color="primary">
-                    Edit
-                  </Button>
-                </CardActions>
-              </Card>
-    );
-}
+
 
 export default function HomePage() {
   const classes = useStyles();
@@ -73,6 +59,7 @@ export default function HomePage() {
         <ArabicText   text="تعلم الجرافيك والبرمجة وتقنيات الذكاء الاصطناعي
             والتسويق الالكترونى واللغات وتطوير المواقع والتطبيقات" fweight={700} fsize="20px" />
         </div>
+       
         <AppBars></AppBars>
        
       </div>
