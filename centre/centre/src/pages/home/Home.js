@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Container, Grid, Card, CardContent, CardActions } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { CardMedia } from '@mui/material';
 import MediaCard from '../../components/MediaCard';
 import AppBars from '../../components/AppBar';
 import ArabicText from '../../components/ArabicText';
@@ -80,6 +81,13 @@ export default function HomePage() {
           ))}
         </Grid>
       </Container>
+      <CardMedia
+            component='video'
+            className={classes.media}
+            image={"../../videos/aljazera.mp4"}
+            poster={"../../images/students.jpg"} 
+            autoPlay
+        />
     </div>
   );
 }
