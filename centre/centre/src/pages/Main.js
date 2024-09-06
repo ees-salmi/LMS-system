@@ -50,12 +50,6 @@ export default function MarketingPage() {
   };
 
   return (
-    <TemplateFrame
-      toggleCustomTheme={toggleCustomTheme}
-      showCustomTheme={showCustomTheme}
-      mode={mode}
-      toggleColorMode={toggleColorMode}
-    >
       <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>
         <CssBaseline enableColorScheme />
     
@@ -68,6 +62,5 @@ export default function MarketingPage() {
         </Routes>
     </Router>
   </ThemeProvider>
-  </TemplateFrame>
   );
 }

@@ -2,7 +2,7 @@ import AppBars from "../../components/AppBar";
 import VideoInput from "../../components/VideoInput";
 import Grid from '@mui/material/Grid2';
 import TextField from '@mui/material/TextField';
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import VideoTable from '../../components/VideoTable'
 import Paper from '@mui/material/Paper';
 
@@ -10,7 +10,10 @@ export default function Dashboard() {
     return (
         
             <>
-            <AppBars ></AppBars>
+            <div style={{marginBottom : "50px"}}>
+                <AppBars ></AppBars>
+            </div>
+            
             
             <Grid container spacing={2}>
             <Grid size={4}>
@@ -23,6 +26,10 @@ export default function Dashboard() {
             </Paper>
             </Grid>
             <Grid size={8}>
+                <Typography align="left">
+                tous les videos
+                </Typography>
+                
               <VideoTable></VideoTable>
             </Grid>
           </Grid>

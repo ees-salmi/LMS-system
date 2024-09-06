@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@fontsource/cairo": "^5.0.21",
+    "@fontsource/noto-sans-arabic": "^5.0.13",
     "@mui/icons-material": "^6.0.2",
     "@mui/material": "^6.0.2",
     "@mui/styles": "^6.0.2",
