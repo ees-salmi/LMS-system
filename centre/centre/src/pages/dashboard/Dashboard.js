@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { Button, Typography } from "@mui/material";
 import VideoTable from '../../components/VideoTable'
 import Paper from '@mui/material/Paper';
-
+import AddVideo from '../../components/AddVideo';
 export default function Dashboard() {
     return (
         
@@ -31,6 +31,13 @@ export default function Dashboard() {
                 </Typography>
                 
               <VideoTable></VideoTable>
+            </Grid>
+          </Grid>
+          <Grid container spacing={1}>
+            <Grid size={4}>
+              <Paper>
+                <AddVideo/>
+              </Paper>
             </Grid>
           </Grid>
           </>

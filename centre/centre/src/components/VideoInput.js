@@ -6,24 +6,53 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
-import Box from '@mui/material/Box';
-
+import ArabicText from './ArabicText'
+import Progress from './shared/Progress';
+import app from '../firebaseConfig';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { Box } from '@mui/system';
 
 export default function VideoInput() {
   const [videoSrc, setVideoSrc] = React.useState(null);
+  const [videos, setVideos] = React.useState([]);  // For storing video download URLs
+  const [progress, setProgress] = React.useState(0);
   const inputRef = React.useRef();
+  const storage = getStorage(app);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const videoURL = URL.createObjectURL(file);
       setVideoSrc(videoURL);
+      uploadToFirebase(file);  // Call function to upload the file
     }
+  };
+
+  const uploadToFirebase = (file) => {
+    const storageRef = ref(storage, `videos/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progressPercent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progressPercent);
+      },
+      (error) => {
+        console.error('Upload failed:', error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setVideos((prevVideos) => [...prevVideos, { name: file.name, url: downloadURL }]);
+        });
+      }
+    );
   };
 
   return (
     <div>
-      <Card sx={{  margin:"10px" }}>
+      {/* Video Card */}
+      <Card sx={{ margin: "10px" }}>
         <CardActionArea>
           <CardMedia
             component="video"
@@ -43,7 +72,10 @@ export default function VideoInput() {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="warning" onClick={() => inputRef.current.click()}>
-            Upload Video
+          <ArabicText text='رفع'  />
+          </Button>
+          <Button size="small" color="warning" onClick={() => inputRef.current.click()}>
+          <ArabicText text=' تحميل'  />
           </Button>
         </CardActions>
       </Card>
@@ -56,8 +88,10 @@ export default function VideoInput() {
         onChange={handleFileChange}
         accept="video/mp4,video/x-m4v,video/*"
       />
-    
-    
+      <Box sx={{marginLeft : "10px"}}>
+      {progress > 0 &&  <Progress progress={Math.trunc( progress )}/>}
+      </Box>
+      
     </div>
   );
 }
